@@ -16,6 +16,7 @@
       "@/*": ["src/*"],
       "#/*": ["types/*"]
     }
+    // "types": ["vite/client"]
   },
 
   "include": [

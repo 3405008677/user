@@ -27,7 +27,7 @@ export const router = createRouter({
  * also save routers in white list of
  */
 export function resetRouter() {
-  router.getRoutes().forEach((item) => {
+  router.getRoutes().forEach((item: RouteRecordRaw) => {
     const { name } = item
     if (name && !WHITE_STATIC_ROUTERS.includes(name as string)) {
       router.hasRoute(name) && router.removeRoute(name)
