@@ -29,20 +29,20 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       alias: [
         {
           find: /@\//,
-          replacement: pathResolve('src') + '/'
+          replacement: pathResolve('src') + '/',
         },
         {
           find: /#\//,
-          replacement: pathResolve('types') + '/'
-        }
-      ]
+          replacement: pathResolve('types') + '/',
+        },
+      ],
     },
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: '@import "@/style/index.scss";'
-        }
-      }
+          additionalData: '@import "@/style/index.scss";',
+        },
+      },
     },
     server: {
       // https:true,
@@ -50,7 +50,10 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       port: viteEnv.VITE_PORT,
       proxy: createProxy(viteEnv.VITE_PROXY),
       //若端口占用，直接退出
-      strictPort: false
+      strictPort: false,
+    },
+    esbuild: {
+      pure: viteEnv.VITE_DROP_CONSOLE ? ['console.log', 'debugger'] : [],
     },
     build: {
       target: 'modules',
@@ -59,8 +62,8 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       minify: 'esbuild', //混淆器
       sourcemap: false,
       //规定触发警告的 chunk 大小（以 kbs 为单位）
-      chunkSizeWarningLimit: 2000
+      chunkSizeWarningLimit: 2000,
     },
-    plugins: createVitePlugins(viteEnv, isBuild)
+    plugins: createVitePlugins(viteEnv, isBuild),
   }
 }
