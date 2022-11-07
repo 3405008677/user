@@ -11,8 +11,13 @@
     "esModuleInterop": true,
     "lib": ["ESNext", "DOM"],
     "skipLibCheck": true,
-    "noEmit": true
+    "noEmit": true,
+    "paths": {
+      "@/*": ["src/*"],
+      "#/*": ["types/*"]
+    }
   },
+
   "include": [
     "src/**/*.ts",
     "src/**/*.d.ts",
@@ -24,6 +29,6 @@
     "types/**/*.d.ts",
     "vite.config.ts"
   ],
-  "exclude": ["node_modules", "dist", "**/*.js"],
+  "exclude": ["node_modules", "dist", "**/*.js"]
   // "references": [{ "path": "./tsconfig.node.json" }]
 }

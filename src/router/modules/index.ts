@@ -1,51 +1,51 @@
 export default [
   {
-    path: '/',
-    name: '/',
-    redirect: '/home',
-    component: () => import('@/layouts/default/index.vue'),
+    path: "/",
+    name: "/",
+    redirect: "/home",
+    component: () => import("@/layouts/default/index.vue"),
     children: [
       {
-        path: 'home',
-        name: '/home',
+        path: "home",
+        name: "/home",
         meta: {
-          title: '首页',
+          title: "首页",
           needLogin: false,
-          keepAlive: false
+          keepAlive: false,
         },
-        component: () => import('@/views/demo/home/home.vue')
-      }
-    ]
+        component: () => import("@/views/demo/home/home.vue"),
+      },
+    ],
   },
 
   {
-    path: '/login',
-    name: 'login',
+    path: "/login",
+    name: "login",
     meta: {
-      title: '登录',
+      title: "登录",
       needLogin: false,
-      keepAlive: false
+      keepAlive: false,
     },
-    component: () => import('@/views/sys/login.vue')
+    component: () => import("@/views/sys/login.vue"),
   },
   {
-    path: '/404',
-    name: 'notFound',
+    path: "/404",
+    name: "notFound",
     meta: {
-      title: '404 Not Found!',
+      title: "404 Not Found!",
       needLogin: false,
-      keepAlive: false
+      keepAlive: false,
     },
-    component: () => import('@/views/sys/404.vue')
+    component: () => import("@/views/sys/404.vue"),
   },
   {
-    path: '/401',
-    name: 'noPower',
+    path: "/401",
+    name: "noPower",
     meta: {
-      title: '无权访问',
+      title: "无权访问",
       needLogin: false,
-      keepAlive: false
+      keepAlive: false,
     },
-    component: () => import('@/views/sys/401.vue')
-  }
-]
+    component: () => import("@/views/sys/401.vue"),
+  },
+];
