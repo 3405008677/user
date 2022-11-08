@@ -12,11 +12,12 @@
     "lib": ["ESNext", "DOM"],
     "skipLibCheck": true,
     "noEmit": true,
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "#/*": ["types/*"]
-    }
-    // "types": ["vite/client"]
+      "@/*": ["./src/*"],
+      "#/*": ["./types/*"]
+    },
+    "types": ["vite/client"]
   },
 
   "include": [

@@ -1,6 +1,4 @@
-import { setRouterNameList } from '@/utlis/auth'
-import type { MyRouter, RouteMeta, RouteRule } from 'vue-router'
-
+import { setRouterNameList } from '@/utils/auth'
 const _import = import.meta.glob('/src/views/demo/**/**.vue')
 
 /**
@@ -43,8 +41,7 @@ export const formattingRouter = (router: Array<MyRouter>, father: RouteRule) => 
     v.component = _import[`/src/views/demo${v.name}.vue`]
     meta.title = router[i].name
     meta.elIcon = router[i].icon
-    meta.url = v.name
-    meta.keepAlice = false
+    meta.keepAlive = false
     v.meta = meta
     // 有children
     if (router[i].sysMenus != undefined && router[i].sysMenus.length) {
@@ -58,7 +55,6 @@ export const formattingRouter = (router: Array<MyRouter>, father: RouteRule) => 
     }
     // 针对home
     if (router[i].parentId == '0' && router[i].path == 'home') {
-      meta.url = v.name + v.name
       v.component = _import[`/src/views/demo${v.name + v.name}.vue`]
     }
     localRouter.push(v.name)

@@ -1,6 +1,6 @@
-export {}
+// export {}
 
-declare module 'vue-router' {
+// declare module 'vue-router' {
   interface RouteMeta {
     title?: string
     elIcon?: string
@@ -25,4 +25,4 @@ declare module 'vue-router' {
     path: string
     sysMenus: Array<MyRouter>
   }
-}
+// }

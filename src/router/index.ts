@@ -23,6 +23,19 @@ export const router = createRouter({
 })
 
 /**
+ * addition router list
+ */
+export function addRouterList(routerList: Array<RouteRule>, father: string = '/') {
+  routerList.forEach((item: RouteRule) => {
+    let routeName: string = item.name
+    // judge router is exist
+    if (!router.hasRoute(routeName) || item.path === 'home') {
+      router.addRoute(father, item as RouteRecordRaw)
+    }
+  })
+}
+
+/**
  * reset router list
  * also save routers in white list of
  */
