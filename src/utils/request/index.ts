@@ -1,3 +1,4 @@
+import type { AxiosRequestConfig } from 'axios'
 import axios from 'axios'
 import { getToken } from '../auth'
 
@@ -8,18 +9,17 @@ const request = axios.create({
 })
 
 // request interceptor
-
-// request.interceptors.request.use(
-//   (config) => {
-//     // request befour judge
-//     const userToken: string = getToken()
-//     if (userToken) config.headers['Authorization'] = `Bearer ${userToken}`
-//     return config
-//   },
-//   (err) => {
-//     return Promise.reject(err)
-//   },
-// )
+request.interceptors.request.use(
+  (config: AxiosRequestConfig) => {
+    // request befour judge
+    const userToken: string = getToken()
+    if (userToken) config.headers['Authorization'] = `Bearer ${userToken}`
+    return config
+  },
+  (err) => {
+    return Promise.reject(err)
+  },
+)
 
 // response interceptor
 // request.interceptors.response.use(
