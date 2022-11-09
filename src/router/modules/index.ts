@@ -16,4 +16,14 @@ export default [
       },
     ],
   },
+  {
+    path: '/login',
+    name: 'login',
+    meta: {
+      title: '登录',
+      needLogin: false,
+      keepAlive: false,
+    },
+    component: () => import('@/views/sys/login/index.vue'),
+  },
 ]

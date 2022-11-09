@@ -17,7 +17,7 @@ const setToken = (token: string) => {
 }
 
 // gain token
-const getToken = () => {
+const getToken = (): string => {
   return Session.get('TOKEN')
 }
 
