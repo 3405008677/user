@@ -1,5 +1,5 @@
 <template>
-  <div> hello word </div>
+  <div> hello word hello word hello word hello word hello word </div>
 </template>
 <script lang="ts" setup>
   import request from '@/utils/request'

@@ -10,12 +10,16 @@
         </template>
       </div>
     </nav>
+    <div><Text /></div>
+    <div><Icon /></div>
   </div>
 </template>
 <script lang="ts" setup>
   import type { Ref } from 'vue'
   import type { PropsType } from './src/rule'
   import MenuItem from './src/menuItem.vue'
+  import Text from './src/text.vue'
+  import Icon from './src/icon.vue'
   let backImg = 'https://qny.aqingya.cn/img/p26w3e.png'
   let name = 'Blog'
   let data: Ref<PropsType[]> = ref([
@@ -57,6 +61,11 @@
     background-size: cover;
     background-repeat: no-repeat;
     transition: all 0.5s;
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+    justify-content: space-between;
+    text-align: center;
   }
   .full_page {
     height: 100vh;
