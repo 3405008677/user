@@ -16,13 +16,13 @@
   import Menu from './menu.vue'
   const props = defineProps<{ data: PropsType }>()
   let mouseEvent = ref('')
-  let hide = ref(true)
+  let hide = ref(false)
   const resMouseEvent = (judge: boolean) => {
     if (judge === true) {
-    //   hide.value = true
+      hide.value = true
       mouseEvent.value = 'menuItemHover'
     } else {
-    //   hide.value = false
+      hide.value = false
       mouseEvent.value = 'menuItemLeave'
     }
   }

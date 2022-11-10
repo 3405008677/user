@@ -1,7 +1,9 @@
 <template>
   <div id="header-wrap" class="full_page" :style="'background-image: url(' + backImg + ');'">
     <nav class="flex-a nav">
-      <div class="header-left">{{ name }}</div>
+      <div class="header-left cursor-pointer">
+        {{ name }}
+      </div>
       <div class="header-right flex">
         <template v-for="(item, index) in data" :key="index">
           <MenuItem :data="item" />
