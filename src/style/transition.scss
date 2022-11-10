@@ -1,0 +1,31 @@
+/* menuItem hover color
+------------------------------- */
+@keyframes menuItemHover {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@keyframes menuItemLeave {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+  }
+}
+
+/* 向上渐显
+------------------------------- */
+@keyframes upTop {
+  0% {
+    transform: translateY(60px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}

@@ -7,20 +7,14 @@
   outline: none !important;
   text-decoration: none;
 }
-html {
-  height: 100%;
-  box-sizing: border-box;
-}
 body {
-  height: 100%;
+  box-sizing: border-box;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial,
     sans-serif;
-}
-#app {
-  height: 100%;
+  cursor: url('@/assets/image/auto.png'), auto;
 }
 *,
 *:before,
@@ -52,7 +46,7 @@ div:focus {
     visibility: hidden;
     display: block;
     font-size: 0;
-    content: " ";
+    content: ' ';
     clear: both;
     height: 0;
   }
@@ -178,7 +172,7 @@ div:focus {
 ------------------------------- */
 // 默认
 .cursor-default {
-  cursor: default !important;
+  cursor: url('@/assets/image/auto.png'), auto;
 }
 // 帮助
 .cursor-help {
@@ -186,7 +180,7 @@ div:focus {
 }
 // 手指
 .cursor-pointer {
-  cursor: pointer !important;
+  cursor: url('@/assets/image/pointer.png'), pointer;
 }
 // 移动
 .cursor-move {

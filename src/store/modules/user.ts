@@ -17,6 +17,8 @@ export default defineStore('user', {
       this.token = bean.token
       this.userId = bean.id
       setToken(bean.token)
+      console.log(11);
+      
     },
   },
 })

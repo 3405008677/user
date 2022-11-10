@@ -29,9 +29,11 @@ export function befoutEach(router: Router) {
           message: '请先退出再登录！',
           type: 'error',
         })
+        console.log(from)
         return next(from.path)
       }
       // 判断路由是否存在  不存在则进入
+      return next()
     } else {
       // 判断路由是否存在
       if (!router.hasRoute(to.name!)) {
