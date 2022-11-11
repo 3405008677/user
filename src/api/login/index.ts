@@ -6,8 +6,8 @@ import request from '@/utils/request'
  * @params username 用户名
  * @params password 密码
  */
-const login = (params: Login) => {
-  return request.post('/sys/login', params)
+const login = (data: Login) => {
+  return request.post('/sys/login', data)
 }
 
 export default {

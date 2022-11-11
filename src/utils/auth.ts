@@ -1,10 +1,9 @@
 import type { RouteRecordRaw } from 'vue-router'
 import { Session } from './storage'
-import { router } from '../router/index'
 
 //storage basic info
 const setUserInfo = (info: Object) => {
-  return Session.set(import.meta.env.VITE_WEB_INFO || 'USER_INFOR', info)
+  return Session.set(import.meta.env.VITE_WEB_INFO || 'USER-INFO', info)
 }
 //gain storage basic info
 const getUserInfo = () => {

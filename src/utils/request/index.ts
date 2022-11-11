@@ -1,7 +1,8 @@
 import axios from './base'
 
+type ParamsType = object | string | number | [] | boolean
 class request {
-  static get = (url: string, params?: object, headers?: object) => {
+  static get = (url: string, params?: ParamsType, headers?: object) => {
     return axios({
       url,
       method: 'GET',
@@ -9,7 +10,7 @@ class request {
       headers,
     })
   }
-  static post = (url: string, data?: object, headers?: object) => {
+  static post = (url: string, data?: ParamsType, headers?: object) => {
     return axios({
       url,
       method: 'POST',
@@ -17,23 +18,19 @@ class request {
       headers,
     })
   }
-  static put = (url: string, data?: object, headers?: object) => {
+  static put = (url: string, data?: ParamsType, headers?: object) => {
     return axios({
       url,
       method: 'GET',
       data,
     })
   }
-  static delete = (url: string, params?: object, headers?: object) => {
+  static delete = (url: string, params?: ParamsType, headers?: object) => {
     return axios({
       url,
       method: 'DELETE',
       params,
     })
-  }
-  asd(){
-    console.log(1);
-    
   }
 }
 

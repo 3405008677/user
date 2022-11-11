@@ -69,6 +69,11 @@ div:focus {
   display: flex;
   align-items: center;
 }
+.flex-c {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
 .flex-auto {
   flex: 1;
   overflow: hidden;
@@ -180,7 +185,7 @@ div:focus {
 }
 // 手指
 .cursor-pointer {
-  cursor: url('@/assets/image/pointer.png'), pointer;
+  cursor: pointer;
 }
 // 移动
 .cursor-move {
@@ -222,4 +227,3 @@ div:focus {
 .color-info {
   color: var(--el-color-info);
 }
-

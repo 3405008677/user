@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex-a menuItem hoverColor"
+    class="flex-a menuItem hoverColor cursor-pointer"
     @mouseenter="resMouseEvent(true)"
     @mouseleave="resMouseEvent(false)"
   >
@@ -8,12 +8,12 @@
       <component :is="props.data.icon" />
     </el-icon>
     <span>{{ props.data.title }}</span>
-    <Menu v-show="hide" :data="props.data.children!" />
+    <MenuItem v-show="hide" :data="props.data.children!" />
   </div>
 </template>
 <script lang="ts" setup>
-  import type { PropsType } from './rule'
-  import Menu from './menu.vue'
+  import type { PropsType } from '../rule'
+  import MenuItem from './menuItem.vue'
   const props = defineProps<{ data: PropsType }>()
   let mouseEvent = ref('')
   let hide = ref(false)

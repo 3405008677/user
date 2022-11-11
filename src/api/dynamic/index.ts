@@ -33,4 +33,4 @@ const thumb = (data: Thumb) => {
   return request.post('/dynamic/thumb', data)
 }
 
-export { append, deteleDyn, thumb }
+export default { append, deteleDyn, thumb }

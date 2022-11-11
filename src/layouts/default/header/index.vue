@@ -6,8 +6,9 @@
       </div>
       <div class="header-right flex">
         <template v-for="(item, index) in data" :key="index">
-          <MenuItem :data="item" />
+          <Menu :data="item" />
         </template>
+        <UserDropDown />
       </div>
     </nav>
     <div><Text /></div>
@@ -17,9 +18,11 @@
 <script lang="ts" setup>
   import type { Ref } from 'vue'
   import type { PropsType } from './src/rule'
-  import MenuItem from './src/menuItem.vue'
+  import Menu from './src/menu/menu.vue'
   import Text from './src/text.vue'
   import Icon from './src/icon.vue'
+  import UserDropDown from './src/userDropDown.vue/userDropDown.vue'
+
   let backImg = 'https://qny.aqingya.cn/img/p26w3e.png'
   let name = 'Blog'
   let data: Ref<PropsType[]> = ref([

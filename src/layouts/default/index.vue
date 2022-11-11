@@ -11,8 +11,13 @@
   import Header from './header/index.vue'
   import Main from './main/index.vue'
   import Footer from './footer/index.vue'
-
 </script>
 <style scoped lang="scss">
-
+  .el-main {
+    padding: 40px 25px;
+    margin: 0 auto;
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+  }
 </style>

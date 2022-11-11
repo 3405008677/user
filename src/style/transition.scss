@@ -42,3 +42,39 @@
     transform: translateY(0px);
   }
 }
+/* 头像旋转
+------------------------------- */
+@keyframes vatarRotateStart {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes vatarRotateEnd {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+/* 放大
+------------------------------- */
+@keyframes recentBig {
+  0% {
+    transform: scale(1, 1);
+  }
+  100% {
+    transform: scale(1.1, 1.1);
+  }
+}
+@keyframes recentMsall {
+  0% {
+    transform: scale(1.1, 1.1);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}

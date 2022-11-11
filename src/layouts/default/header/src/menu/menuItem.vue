@@ -9,7 +9,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import type { PropsType } from './rule'
+  import type { PropsType } from '../rule'
   const props = defineProps<{ data: Array<PropsType> | [] }>()
 </script>
 <style scoped lang="scss">
