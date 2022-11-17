@@ -22,7 +22,6 @@
 <script lang="ts" setup>
   import { userStore } from '@/store'
   const userName = computed(() => userStore.userInfo.name)
-
   let mouseEvent = ref('')
   const resMouseEvent = (judge: boolean) => {
     if (judge === true) {
