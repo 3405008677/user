@@ -1,6 +1,15 @@
 import type { Addend, DeteleDyn, Thumb, QueryDynList } from './rule'
 import request from '@/utils/request'
 /**
+ * 所有动态
+ * @params pageNum 当前页数
+ * @params pageSize 每页数量
+ */
+const thumbDetail = (params: QueryDynList) => {
+  return request.get('/dynamic/DynDetail', params)
+}
+
+/**
  * 用户动态
  * @params pageNum 当前页数
  * @params pageSize 每页数量
@@ -33,4 +42,4 @@ const thumb = (data: Thumb) => {
   return request.post('/dynamic/thumb', data)
 }
 
-export default { append, deteleDyn, thumb }
+export default { thumbDetail, queryDynList, append, deteleDyn, thumb }

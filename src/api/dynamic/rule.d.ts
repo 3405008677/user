@@ -1,4 +1,5 @@
 /**
+ * 所以动态
  * 用户动态
  */
 export interface QueryDynList {

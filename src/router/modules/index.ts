@@ -15,6 +15,16 @@ export default [
         },
         component: () => import('@/views/demo/home/home.vue'),
       },
+      {
+        path: 'edit',
+        name: '/edti',
+        meta: {
+          title: '富文本',
+          needLogin: true,
+          keepAlive: false,
+        },
+        component: () => import('@/views/demo/edit/index.vue'),
+      },
     ],
   },
   {

@@ -5,7 +5,7 @@
       @mouseenter="resMouseEvent(true)"
       @mouseleave="resMouseEvent(false)"
     >
-      <div class="recent-item-img">
+      <div class="recent-item-img" v-if="direction">
         <el-image style="width: 100%; height: 100%" :src="props.recent.image" fit="cover" />
       </div>
       <div class="recent-item-text flex-c">
@@ -34,19 +34,27 @@
           </span>
         </div>
       </div>
+      <div class="recent-item-img" v-if="!direction">
+        <el-image style="width: 100%; height: 100%" :src="props.recent.image" fit="cover" />
+      </div>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
   import { Recent } from '../rule'
-  const props = defineProps<{ recent: Recent }>()
+  const props = defineProps<{ recent: Recent; direction: number }>()
   let iconSize = 20
   let mouseEvent = ref('')
+  let direction = computed(() => props.direction % 2)
   const resMouseEvent = (judge: boolean) => {
     if (judge === true) {
-      mouseEvent.value = 'recentBig'
+      if ((mouseEvent.value = 'recentMsall')) {
+        mouseEvent.value = 'recentBig'
+      }
     } else {
-      mouseEvent.value = 'recentMsall'
+      if ((mouseEvent.value = 'recentBig')) {
+        mouseEvent.value = 'recentMsall'
+      }
     }
   }
 
@@ -54,19 +62,19 @@
   let thumb = ref(false)
   // 踩
   let trample = ref(false)
-/**
- * 已经点赞
- * 则 取消点赞 数量减少
- * else
- * 没有点赞
- * 则 点赞 数量增加
- */
+  /**
+   * 已经点赞
+   * 则 取消点赞 数量减少
+   * else
+   * 没有点赞
+   * 则 点赞 数量增加
+   */
   const isThumb = () => {
     if (thumb.value) {
       thumb.value = !thumb.value
-      trample.value = false
       --props.recent.thumb
     } else {
+      if (trample.value === true) trample.value = !trample.value
       thumb.value = !thumb.value
       ++props.recent.thumb
     }
@@ -74,9 +82,9 @@
   const isTrample = () => {
     if (trample.value) {
       trample.value = !trample.value
-      thumb.value = false
       --props.recent.trample
     } else {
+      if (thumb.value === true) thumb.value = !thumb.value
       trample.value = !trample.value
       ++props.recent.trample
     }
