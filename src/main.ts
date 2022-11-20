@@ -14,7 +14,7 @@ async function bootstrap() {
   setupStore(app)
   // 配置 router
   setupRouter(app)
-  setupRouterGuard(router)
+  // setupRouterGuard(router)
   // 配置 icon
   for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component)

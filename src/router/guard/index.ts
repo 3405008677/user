@@ -13,9 +13,9 @@ nProgress.configure({ showSpinner: false })
 let loading: any
 
 /**
- * befoutEach
+ * beforeEach
  */
-export function befoutEach(router: Router) {
+export function beforeEach(router: Router) {
   router.beforeEach((to, from, next) => {
     nProgress.start()
     loading = ElLoading.service({
@@ -73,6 +73,6 @@ export function afterEach(router: Router) {
 }
 
 export function setupRouterGuard(router: Router) {
-  befoutEach(router)
+  beforeEach(router)
   afterEach(router)
 }
