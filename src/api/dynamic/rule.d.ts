@@ -12,6 +12,7 @@ export interface QueryDynList {
 export interface Addend {
   title: string
   content: string
+  imgList?: string[]
 }
 /**
  * 删除动态
@@ -23,6 +24,6 @@ export interface DeteleDyn {
  * 点赞/取消点赞
  */
 export interface Thumb {
-  byUserid: number
+  byUserid?: number
   dynId: number
 }

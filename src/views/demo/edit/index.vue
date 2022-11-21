@@ -1,60 +1,43 @@
 <template>
-  <div>
-    <div id="editor"> </div>
+  <div class="edit">
+    <el-input v-model="appendTitle" placeholder="标题" />
+    <Content v-model="appendContent" />
+    <el-divider />
+    <p>发布设置</p>
+    <div class="bottom flex-a">
+      <div class="flex-j-a">
+        <p>回到顶部</p>
+      </div>
+      <div class="flex-j-a">
+        <el-button @click="submit">预览</el-button>
+        <el-button @click="submit">发布</el-button>
+      </div>
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
-  import 'quill/dist/quill.snow.css'
-  import Quill from 'quill'
-  onMounted(() => {
-    const editor = new Quill('#editor', {
-      theme: 'snow',
-      placeholder: '输入正文',
-      modules: {
-        container: '#toolbar',
-        toolbar: [
-          'bold',
-          'italic',
-          'underline',
-          'strike', 
-          'blockquote',
-          'code-block',
-          { header: 1 },
-          { header: 2 }, 
-          { list: 'ordered' },
-          { list: 'bullet' },
-          { script: 'sub' },
-          { script: 'super' }, 
-          { indent: '-1' },
-          { indent: '+1' },
-          { direction: 'rtl' }, 
-          { size: ['small', false, 'large', 'huge'] },
-          { color: [] },
-          { background: [] }, 
-          { align: [] },
-          'image',
-        ],
-        // toolbar: [
-        //   'bold',
-        //   'italic',
-        //   'underline',
-        //   { header: 1 },
-        //   { header: 2 },
-        //   'blockquote',
-        //   'code-block',
-        //   'code',
-        //   'link',
-        //   { list: 'ordered' },
-        //   { list: 'bullet' },
-        //   'image',
-        // ],
-        syntax: true,
-        history: {
-          delay: 3000,
-          maxStack: 100,
-        },
-      },
+  import Header from './header/index.vue'
+  import Content from './content/index.vue'
+  import dynamic from '@/api/dynamic'
+  const appendTitle = ref('')
+  const appendContent = ref('')
+
+  const submit = () => {
+    dynamic.append({
+      title: appendTitle.value,
+      content: appendContent.value,
     })
-  })
+  }
 </script>
-<style lang="scss" scoped></style>
+<style scoped lang="scss">
+  .edit {
+    position: relative;
+    background-color: #fff;
+  }
+  .bottom {
+    width: 100%;
+    bottom: 0;
+    line-height: 50px;
+    justify-content: space-between;
+  }
+</style>

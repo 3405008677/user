@@ -14,11 +14,16 @@
         </h2>
         <p style="padding-top: 10px">{{ props.recent.content }}</p>
         <div class="item-meta">
-          <span @click="isThumb" :class="thumb ? 'item-meta-click' : 'item-meta-2 cursor-pointer'">
-            <el-icon :size="iconSize"><CaretTop /></el-icon>&nbsp;赞同{{ props.recent.thumb }}
+          <span
+            @click="isThumb(props.recent.id)"
+            :class="thumb ? 'item-meta-click' : 'item-meta-2 cursor-pointer'"
+          >
+            <el-icon :size="iconSize"><CaretTop /></el-icon>&nbsp;赞同{{
+              props.recent.thumb_number
+            }}
           </span>
           <span
-            @click="isTrample"
+            @click="isTrample(props.recent.id)"
             :class="trample ? 'item-meta-click' : 'item-meta-2 cursor-pointer'"
           >
             <el-icon :size="iconSize"><CaretBottom /></el-icon>
@@ -42,6 +47,7 @@
 </template>
 <script lang="ts" setup>
   import { Recent } from '../rule'
+  import dynamic from '@/api/dynamic'
   const props = defineProps<{ recent: Recent; direction: number }>()
   let iconSize = 20
   let mouseEvent = ref('')
@@ -69,25 +75,31 @@
    * 没有点赞
    * 则 点赞 数量增加
    */
-  const isThumb = () => {
+  const isThumb = (id: number) => {
     if (thumb.value) {
       thumb.value = !thumb.value
-      --props.recent.thumb
     } else {
       if (trample.value === true) trample.value = !trample.value
       thumb.value = !thumb.value
-      ++props.recent.thumb
     }
+    dynamic.thumb({ dynId: id }).then((e) => {
+      props.recent.thumb_number = e.bean
+      console.log('d');
+      
+    })
   }
-  const isTrample = () => {
+  const isTrample = (id: number) => {
     if (trample.value) {
       trample.value = !trample.value
-      --props.recent.trample
     } else {
       if (thumb.value === true) thumb.value = !thumb.value
       trample.value = !trample.value
-      ++props.recent.trample
     }
+    dynamic.trample({ dynId: id }).then((e) => {
+      props.recent.thumb_number = e.bean
+      console.log('c');
+
+    })
   }
 
   const clickThumb = () => {

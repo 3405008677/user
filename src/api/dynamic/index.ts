@@ -22,6 +22,7 @@ const queryDynList = (params: QueryDynList) => {
  * 新增动态
  * @params title 标题
  * @params content 内容
+ * @params imgList 图片
  */
 const append = (data: Addend) => {
   return request.post('/dynamic/append', data)
@@ -41,5 +42,11 @@ const deteleDyn = (params: DeteleDyn) => {
 const thumb = (data: Thumb) => {
   return request.post('/dynamic/thumb', data)
 }
-
-export default { thumbDetail, queryDynList, append, deteleDyn, thumb }
+/**
+ * 踩
+ * @params dynId 被点赞的用户id
+ */
+const trample = (data: DeteleDyn) => {
+  return request.post('/dynamic/trample', data)
+}
+export default { thumbDetail, queryDynList, append, deteleDyn, thumb, trample }
