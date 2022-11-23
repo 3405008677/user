@@ -6,7 +6,7 @@ import request from '@/utils/request'
  * @params id 用户ID
  */
 const getUserInfoApi = (params: { id: number }) => {
-  return request.get('sys/user/info', params.id)
+  return request.get('sys/user/info', params)
 }
 export default {
   getUserInfoApi,

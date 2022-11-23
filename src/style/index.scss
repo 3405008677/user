@@ -1,5 +1,12 @@
 @import './app.scss';
-@import "./desing/color.scss";
-@import "./desing/style.scss";
+@import './desing/color.scss';
+@import './desing/style.scss';
 @import './revampElement.scss';
 @import './transition.scss';
+
+// 卡片样式
+@import './card/base.scss';
+
+// 字体图标
+@import '@/assets/image/quill/iconfont.css';
+@import '@/assets/image/blog/iconfont.css';

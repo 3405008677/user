@@ -1,49 +1,87 @@
 <template>
   <div class="card-icon">
     <div class="card-info-icon">
-      <el-avatar
-        class="avatar"
-        :size="100"
-        :src="circleUrl"
-        @mouseenter="resMouseEvent(true)"
-        @mouseleave="resMouseEvent(false)"
-      />
-      <p>{{ userName }}</p>
+      <el-avatar class="avatar-img avatar" :size="100" :src="circleUrl" />
+      <p style="padding: 8px 0 16px 0; font-size: 24px">{{ userName }}</p>
     </div>
-    <div class="card-info-data">
-      <div></div>
-      <div></div>
-      <div></div>
+    <div class="card-info-data flex">
+      <router-link to="">
+        <p>文章</p>
+        <p>10</p>
+      </router-link>
+      <router-link to="">
+        <p>文章</p>
+        <p>10</p>
+      </router-link>
+      <router-link to="">
+        <p>分类</p>
+        <p>10</p>
+      </router-link>
     </div>
-    <p></p>
-    <div class="card-info-social"></div>
+    <router-link class="goGithub flex-j-a" to="">
+      <i class="iconfont icon-github-fill"></i>
+      <span>Github</span>
+    </router-link>
+    <div class="card-info-social">
+      <el-tooltip content="QQ" placement="bottom" effect="light">
+        <i class="iconfont icon-qq"></i>
+      </el-tooltip>
+      <el-tooltip content="CSDN" placement="bottom" effect="light">
+        <i class="iconfont icon-csdn"></i>
+      </el-tooltip>
+      <el-tooltip content="Gitee" placement="bottom" effect="light">
+        <i class="iconfont icon-gitee"></i>
+      </el-tooltip>
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
   import { userStore } from '@/store'
   const userName = computed(() => userStore.userInfo.name)
-  let mouseEvent = ref('')
-  const resMouseEvent = (judge: boolean) => {
-    if (judge === true) {
-      mouseEvent.value = 'vatarRotateStart'
-    } else {
-      mouseEvent.value = ''
-      mouseEvent.value = 'vatarRotateEnd'
-    }
-  }
   const circleUrl = ref('https://qny.aqingya.cn/img/p26w3e.png')
 </script>
 <style scoped lang="scss">
-  .card-icon {
-    width: 100%;
-    position: relative;
-    padding: 20px 24px;
-    box-shadow: $--card-box-shadow;
-    text-align: center;
-  }
   .avatar {
-    animation: v-bind('mouseEvent') 1s;
-    animation-timing-function: ease;
-    animation-fill-mode: forwards;
+    &:hover {
+      transform: rotate(360deg);
+    }
+  }
+  .card-info-data {
+    justify-content: space-around;
+    > a {
+      &:nth-child(2) {
+        padding: 0 10px;
+      }
+      &:hover {
+        color: #49b1f5;
+      }
+      p {
+        &:first-child {
+          padding-bottom: 8px;
+        }
+      }
+    }
+  }
+  .goGithub {
+    display: inline-flex;
+    margin-top: 18px;
+    width: 100%;
+    height: 38px;
+    background-color: #49b1f5;
+    color: #fff;
+    > i {
+      display: inline-block;
+      font-size: 20px;
+      padding-right: 8px;
+    }
+    &:hover {
+      background-color: #6dc5ff;
+    }
+  }
+  .card-info-social {
+    margin-top: 18px;
+    i {
+      padding: 0 10px;
+    }
   }
 </style>

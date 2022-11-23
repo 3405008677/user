@@ -17,7 +17,7 @@ export interface Addend {
 /**
  * 删除动态
  */
-export interface DeteleDyn {
+export interface DeleteDyn {
   dynId: number
 }
 /**

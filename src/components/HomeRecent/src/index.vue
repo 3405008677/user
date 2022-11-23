@@ -1,10 +1,6 @@
 <template>
   <div id="recent">
-    <div
-      class="recent-item flex"
-      @mouseenter="resMouseEvent(true)"
-      @mouseleave="resMouseEvent(false)"
-    >
+    <div class="recent-item flex">
       <div class="recent-item-img" v-if="direction">
         <el-image style="width: 100%; height: 100%" :src="props.recent.image" fit="cover" />
       </div>
@@ -31,11 +27,11 @@
           <span class="item-meta-3 cursor-pointer">
             <el-icon :size="iconSize"><Comment /></el-icon>&nbsp;评论{{ props.recent.thumb }}
           </span>
-          <span class="item-meta-4 cursor-pointer">
-            <el-icon :size="iconSize"><StarFilled /></el-icon>&nbsp;分享
+          <span @click="collect(props.recent.id)" class="item-meta-4 cursor-pointer">
+            <el-icon :style="isCollect" :size="iconSize"><StarFilled /></el-icon>&nbsp;收藏
           </span>
           <span class="item-meta-5 cursor-pointer">
-            <el-icon :size="iconSize"><Promotion /></el-icon>&nbsp;收藏
+            <el-icon :size="iconSize"><Promotion /></el-icon>&nbsp;分享
           </span>
         </div>
       </div>
@@ -50,20 +46,8 @@
   import dynamic from '@/api/dynamic'
   const props = defineProps<{ recent: Recent; direction: number }>()
   let iconSize = 20
-  let mouseEvent = ref('')
   let direction = computed(() => props.direction % 2)
-  const resMouseEvent = (judge: boolean) => {
-    if (judge === true) {
-      if ((mouseEvent.value = 'recentMsall')) {
-        mouseEvent.value = 'recentBig'
-      }
-    } else {
-      if ((mouseEvent.value = 'recentBig')) {
-        mouseEvent.value = 'recentMsall'
-      }
-    }
-  }
-
+  let isCollect = ref('')
   // 点赞
   let thumb = ref(false)
   // 踩
@@ -75,33 +59,39 @@
    * 没有点赞
    * 则 点赞 数量增加
    */
-  const isThumb = (id: number) => {
+  const isThumb = async (id: number) => {
+    await dynamic.thumb({ dynId: id })
     if (thumb.value) {
       thumb.value = !thumb.value
+      props.recent.thumb_number--
     } else {
       if (trample.value === true) trample.value = !trample.value
       thumb.value = !thumb.value
+      props.recent.thumb_number++
     }
-    dynamic.thumb({ dynId: id }).then((e) => {
-      props.recent.thumb_number = e.bean
-      console.log('d');
-      
-    })
   }
+  /**
+   * 已经踩
+   * 则 取消踩 数量不变
+   * else
+   * 没有踩
+   *   是否点赞
+   *     点赞了则 数量--
+   *     没点赞则  不变
+   */
   const isTrample = (id: number) => {
+    dynamic.trample({ dynId: id })
     if (trample.value) {
       trample.value = !trample.value
     } else {
-      if (thumb.value === true) thumb.value = !thumb.value
+      if (thumb.value === true) {
+        thumb.value = !thumb.value
+        props.recent.thumb_number--
+      }
       trample.value = !trample.value
     }
-    dynamic.trample({ dynId: id }).then((e) => {
-      props.recent.thumb_number = e.bean
-      console.log('c');
-
-    })
   }
-
+  // 初始化
   const clickThumb = () => {
     if (props.recent.isThumb === 0) {
       // 两个都不亮
@@ -112,6 +102,14 @@
       // 踩了
       trample.value = true
     }
+    if (props.recent.isCollect) {
+      isCollect.value = 'color:#056de8;'
+    }
+  }
+  // 收藏
+  const collect = (id: number) => {
+    dynamic.collect({ dynId: id })
+    isCollect.value == '' ? (isCollect.value = 'color:#056de8;') : (isCollect.value = '')
   }
   onMounted(() => {
     clickThumb()
@@ -124,9 +122,10 @@
     border-radius: 6px;
     overflow: hidden;
     .el-image {
-      animation: v-bind('mouseEvent') 0.5s;
-      animation-timing-function: ease;
-      animation-fill-mode: forwards;
+      transition: filter 375ms ease-in 0.2s, transform 0.6s;
+    }
+    &:hover .el-image {
+      transform: scale(1.1);
     }
     .recent-item-img {
       width: 35%;
@@ -136,10 +135,9 @@
     }
     .recent-item-text {
       width: 65%;
-      padding: 0 40px;
+      padding: 20px;
       p {
         padding: 16px 0;
-        text-indent: 2em;
         display: -webkit-box;
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;

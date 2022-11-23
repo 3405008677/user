@@ -14,7 +14,11 @@ body {
   text-rendering: optimizeLegibility;
   font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial,
     sans-serif;
-  cursor: url('@/assets/image/auto.png'), auto;
+  cursor: url(https://qny.aqingya.cn/blog/default%20.cur), default;
+}
+a,
+img {
+  cursor: url(https://qny.aqingya.cn/blog/pointer.cur), default;
 }
 *,
 *:before,
@@ -30,6 +34,17 @@ a:active {
 }
 div:focus {
   outline: none;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+  word-wrap: break-word;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  transition: all 0.2s;
+  overflow-wrap: break-word;
 }
 
 /* 文本溢出隐藏
@@ -175,6 +190,7 @@ div:focus {
 }
 /* cursor 鼠标形状
 ------------------------------- */
+
 // 默认
 .cursor-default {
   cursor: url('@/assets/image/auto.png'), auto;
@@ -185,7 +201,7 @@ div:focus {
 }
 // 手指
 .cursor-pointer {
-  cursor: pointer;
+  cursor: url(https://qny.aqingya.cn/blog/pointer.cur), default;
 }
 // 移动
 .cursor-move {
@@ -237,4 +253,14 @@ div:focus {
   -webkit-font-smoothing: antialiased;
   -webkit-text-stroke-width: 0.2px;
   -moz-osx-font-smoothing: grayscale;
+}
+// 鼠标经过动画
+.myImgHover {
+  transition: filter 375ms ease-in 0.2s, transform 0.6s;
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+.avatar-img {
+  transition: filter 375ms ease-in 0.2s, transform 0.3s;
 }

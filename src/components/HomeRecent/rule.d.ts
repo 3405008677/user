@@ -7,5 +7,6 @@ export interface Recent {
   thumb: number //点赞
   comment: number //评论
   isThumb?: number //0 没点赞也没踩  1点赞  2踩
+  isCollect?: number // 0 没收藏 1 收藏了
   [key: string]: any
 }

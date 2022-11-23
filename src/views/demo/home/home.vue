@@ -13,5 +13,9 @@
   // 获取用户动态
   let { bean } = await dynamic.thumbDetail({ pageNum: page.value, pageSize: limit.value })
   console.log(bean)
+  //
+  const load = () => {
+    console.log(1)
+  }
 </script>
 <style scoped lang="scss"></style>

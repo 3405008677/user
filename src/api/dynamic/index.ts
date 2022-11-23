@@ -1,4 +1,4 @@
-import type { Addend, DeteleDyn, Thumb, QueryDynList } from './rule'
+import type { Addend, DeleteDyn, Thumb, QueryDynList } from './rule'
 import request from '@/utils/request'
 /**
  * 所有动态
@@ -31,8 +31,8 @@ const append = (data: Addend) => {
  * 删除动态
  * @params bynId 被点赞的动态id
  */
-const deteleDyn = (params: DeteleDyn) => {
-  return request.delete('/dynamic/deteleDyn', params)
+const deleteDyn = (params: DeleteDyn) => {
+  return request.delete('/dynamic/deleteDyn', params)
 }
 /**
  * 点赞/取消点赞
@@ -46,7 +46,14 @@ const thumb = (data: Thumb) => {
  * 踩
  * @params dynId 被点赞的用户id
  */
-const trample = (data: DeteleDyn) => {
+const trample = (data: DeleteDyn) => {
   return request.post('/dynamic/trample', data)
 }
-export default { thumbDetail, queryDynList, append, deteleDyn, thumb, trample }
+/**
+ * 收藏
+ * @params dynId 收藏的用户id
+ */
+const collect = (params: DeleteDyn) => {
+  return request.get('/dynamic/collect', params)
+}
+export default { thumbDetail, queryDynList, append, deleteDyn, thumb, trample, collect }

@@ -4,7 +4,6 @@ import App from './App.vue'
 import { router, setupRouter } from '@/router'
 import { setupRouterGuard } from './router/guard'
 import { setupStore } from '@/store'
-import './assets/image/quill/iconfont.css'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
 import { clickEffect } from '@/utils/special/mouseClick'

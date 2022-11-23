@@ -8,6 +8,7 @@
       <div class="flex-j-a">
         <p>回到顶部</p>
       </div>
+      
       <div class="flex-j-a">
         <el-button @click="submit">预览</el-button>
         <el-button @click="submit">发布</el-button>

@@ -16,6 +16,7 @@ export default defineStore('user', {
     } as UserState
   },
   actions: {
+    // 登录
     async login(userinfo: Login) {
       const { username, password } = userinfo
       let { bean } = await loginApi.login({ username: username.trim(), password: password.trim() })
@@ -24,11 +25,13 @@ export default defineStore('user', {
       setToken(bean.token)
       this.getInfo()
     },
+    // 退出
     async logout() {
       this.token = ''
       Session.clear()
       resetRouter()
     },
+    // 获取用户信息
     async getInfo() {
       let { bean } = await userApi.getUserInfoApi({ id: this.userId })
       this.userInfo = bean
