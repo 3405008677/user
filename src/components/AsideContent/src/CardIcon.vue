@@ -18,10 +18,10 @@
         <p>10</p>
       </router-link>
     </div>
-    <router-link class="goGithub flex-j-a" to="">
+    <a class="goGithub flex-j-a" href="https://github.com/3405008677" target="view_window">
       <i class="iconfont icon-github-fill"></i>
       <span>Github</span>
-    </router-link>
+    </a>
     <div class="card-info-social">
       <el-tooltip content="QQ" placement="bottom" effect="light">
         <i class="iconfont icon-qq"></i>

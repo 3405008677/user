@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3789289 */
-  src: url('iconfont.woff2?t=1669213915756') format('woff2'),
-       url('iconfont.woff?t=1669213915756') format('woff'),
-       url('iconfont.ttf?t=1669213915756') format('truetype');
+  src: url('iconfont.woff2?t=1669302423128') format('woff2'),
+       url('iconfont.woff?t=1669302423128') format('woff'),
+       url('iconfont.ttf?t=1669302423128') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,54 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-food-cookie:before {
+  content: "\e601";
+}
+
+.icon-food-pecan:before {
+  content: "\e602";
+}
+
+.icon-food-strawberry:before {
+  content: "\e603";
+}
+
+.icon-food-bread:before {
+  content: "\e604";
+}
+
+.icon-food-pizza:before {
+  content: "\e605";
+}
+
+.icon-food-taco:before {
+  content: "\e606";
+}
+
+.icon-food-popsicle:before {
+  content: "\e607";
+}
+
+.icon-food-eggyolkcake:before {
+  content: "\e608";
+}
+
+.icon-food-sushi:before {
+  content: "\e609";
+}
+
+.icon-food-mochi:before {
+  content: "\e60a";
+}
+
+.icon-food-pistachio:before {
+  content: "\e60b";
+}
+
+.icon-kongxinwenhao:before {
+  content: "\ed19";
 }
 
 .icon-gongsigonggao:before {

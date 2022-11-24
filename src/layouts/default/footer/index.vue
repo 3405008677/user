@@ -17,6 +17,11 @@
     position: relative;
     padding: 40px 20px;
     text-align: center;
+    background: url('https://qny.aqingya.cn/img/wzgimage (33).jpg') no-repeat;
+    background-attachment: scroll;
+    background-position: bottom;
+    background-size: cover;
+    color: #fff;
     div {
       margin-bottom: 10px;
     }

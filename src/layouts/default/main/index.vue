@@ -15,6 +15,8 @@
 </script>
 <style scoped lang="scss">
   #aside-content {
+    position:sticky;
+    top: 100px;
     width: 25%;
     margin-right: 15px;
     > div {

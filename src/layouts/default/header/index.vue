@@ -1,5 +1,9 @@
 <template>
-  <div id="header-wrap" class="full_page" :style="'background-image: url(' + backImg + ');'">
+  <div
+    id="header-wrap"
+    :class="appStore.isHome ? 'full-page' : 'full-page-is'"
+    :style="'background-image: url(' + backImg + ');'"
+  >
     <nav class="flex-a nav">
       <div class="header-left cursor-pointer">
         {{ name }}
@@ -8,11 +12,11 @@
         <template v-for="(item, index) in data" :key="index">
           <Menu :data="item" />
         </template>
-        <UserDropDown />
       </div>
+      <UserDropDown />
     </nav>
-    <div><Text /></div>
-    <div><Icon /></div>
+    <div class="home-text"><Text /></div>
+    <div class="home-icon" v-if="appStore.isHome"><Icon /></div>
   </div>
 </template>
 <script lang="ts" setup>
@@ -22,6 +26,7 @@
   import Text from './src/text.vue'
   import Icon from './src/icon.vue'
   import UserDropDown from './src/userDropDown.vue/userDropDown.vue'
+  import { appStore } from '@/store'
 
   let backImg = 'https://qny.aqingya.cn/img/p26w3e.png'
   let name = 'Blog'
@@ -29,28 +34,33 @@
     {
       title: '主页',
       icon: 'HomeFilled',
+      to: '',
       children: [
-        { title: '主页1', icon: 'HomeFilled' },
-        { title: '主页2', icon: 'HomeFilled' },
-        { title: '主页3', icon: 'HomeFilled' },
+        { title: '主页1', icon: 'HomeFilled', to: '/edit' },
+        { title: '主页2', icon: 'HomeFilled', to: 'home' },
+        { title: '主页3', icon: 'HomeFilled', to: 'home' },
       ],
     },
     {
       title: '主页',
       icon: 'HomeFilled',
+      to: '',
+
       children: [
-        { title: '主页1', icon: 'HomeFilled' },
-        { title: '主页2', icon: 'HomeFilled' },
-        { title: '主页3', icon: 'HomeFilled' },
+        { title: '主页1', icon: 'HomeFilled', to: 'home' },
+        { title: '主页2', icon: 'HomeFilled', to: 'home' },
+        { title: '主页3', icon: 'HomeFilled', to: 'home' },
       ],
     },
     {
       title: '主页',
       icon: 'HomeFilled',
+      to: '',
+
       children: [
-        { title: '主页1', icon: 'HomeFilled' },
-        { title: '主页2', icon: 'HomeFilled' },
-        { title: '主页3', icon: 'HomeFilled' },
+        { title: '主页1', icon: 'HomeFilled', to: 'home' },
+        { title: '主页2', icon: 'HomeFilled', to: 'home' },
+        { title: '主页3', icon: 'HomeFilled', to: 'home' },
       ],
     },
   ])
@@ -63,23 +73,44 @@
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
-    transition: all 0.5s;
-    display: flex;
-    flex-direction: column;
-    align-content: space-around;
-    justify-content: space-between;
     text-align: center;
+    &::before {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.3);
+      content: '';
+      left: 0;
+    }
   }
-  .full_page {
+  .full-page {
     height: 100vh;
     background-attachment: fixed;
   }
-  .flex-a {
-    justify-content: space-between;
+  .full-page-is {
+    height: 400px;
+    background-attachment: fixed;
+    align-content: center;
   }
   .nav {
+    position: fixed;
+    top: 00px;
+    left: 0;
     padding: 0 30px;
     line-height: 60px;
     background: rgba(255, 255, 255, 0.8);
+    z-index: 999;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .home-icon {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+  }
+  .home-text {
+    position: absolute;
+    width: 100%;
+    top: 43%;
   }
 </style>

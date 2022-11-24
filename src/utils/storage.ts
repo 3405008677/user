@@ -5,7 +5,7 @@
  * @method remove
  * @method clear
  */
-export const Loacl = {
+export const Local = {
   set(key: string, val: any) {
     window.localStorage.setItem(key, JSON.stringify(val))
   },
@@ -26,18 +26,17 @@ export const Loacl = {
  * @method remove
  * @method clear
  */
- export const Session = {
-    set(key: string, val: any) {
-      window.sessionStorage.setItem(key, JSON.stringify(val))
-    },
-    get(key: string) {
-      return JSON.parse(window.sessionStorage.getItem(key) as string)
-    },
-    remove(key: string) {
-      window.sessionStorage.removeItem(key)
-    },
-    clear() {
-      window.sessionStorage.clear()
-    },
-  }
-  
+export const Session = {
+  set(key: string, val: any) {
+    window.sessionStorage.setItem(key, JSON.stringify(val))
+  },
+  get(key: string) {
+    return JSON.parse(window.sessionStorage.getItem(key) as string)
+  },
+  remove(key: string) {
+    window.sessionStorage.removeItem(key)
+  },
+  clear() {
+    window.sessionStorage.clear()
+  },
+}

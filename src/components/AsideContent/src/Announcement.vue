@@ -11,6 +11,7 @@
 <style scoped lang="scss">
   .card-icon {
     text-align: start;
+
     h3 {
       padding-bottom: 18px;
       color: #90d0fb;

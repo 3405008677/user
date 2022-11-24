@@ -5,13 +5,12 @@
   import 'quill/dist/quill.snow.css'
   import EmojiBlot from '../formats/emoji'
   import Quill from 'quill'
-  const props = defineProps({
-    modelValue: {},
-  })
+  const props = defineProps<{ modelValue: string }>()
   const emit = defineEmits(['update:modelValue'])
-  let gete: any
+  let upData: any
+  let editor: any
   nextTick(() => {
-    const editor = new Quill('#editor', {
+    editor = new Quill('#editor', {
       theme: 'snow',
       placeholder: '输入正文',
       modules: {
@@ -57,13 +56,19 @@
         },
       },
     })
-    gete = () => {
-      emit('update:modelValue', editor.root.innerHTML)
-    }
   })
   // 扩展 icon
   const icons = Quill.import('ui/icons')
   icons.emoji = '<i class="iconfont icon-mogui"></i>'
   Quill.register('formats/emoji', EmojiBlot)
+
+  onMounted(() => {
+    upData = setInterval(() => {
+      emit('update:modelValue', editor.root.innerHTML)
+    }, 500)
+  })
+  onUnmounted(() => {
+    clearInterval(upData)
+  })
 </script>
 <style lang="scss" scoped></style>

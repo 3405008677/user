@@ -44,6 +44,7 @@
 <script lang="ts" setup>
   import { Recent } from '../rule'
   import dynamic from '@/api/dynamic'
+  import { userStore } from '@/store'
   const props = defineProps<{ recent: Recent; direction: number }>()
   let iconSize = 20
   let direction = computed(() => props.direction % 2)
@@ -60,7 +61,7 @@
    * 则 点赞 数量增加
    */
   const isThumb = async (id: number) => {
-    await dynamic.thumb({ dynId: id })
+    await dynamic.thumb({ dynId: id, byUserId: userStore.userId })
     if (thumb.value) {
       thumb.value = !thumb.value
       props.recent.thumb_number--

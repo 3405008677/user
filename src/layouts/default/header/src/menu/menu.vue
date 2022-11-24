@@ -1,52 +1,78 @@
 <template>
-  <div
-    class="flex-a menuItem hoverColor cursor-pointer"
-    @mouseenter="resMouseEvent(true)"
-    @mouseleave="resMouseEvent(false)"
-  >
-    <el-icon :size="18">
-      <component :is="props.data.icon" />
-    </el-icon>
-    <span>{{ props.data.title }}</span>
-    <MenuItem v-show="hide" :data="props.data.children!" />
+  <div class="nav-item">
+    <router-link :to="data.to">
+      <svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon-food-cookie"></use>
+      </svg>
+      <span>{{ props.data.title }}</span>
+    </router-link>
+    <div class="menu">
+      <router-link :to="item.to" v-for="(item, index) in props.data.children" :key="index">
+        <svg class="icon" aria-hidden="true">
+          <use xlink:href="#icon-food-cookie"></use>
+        </svg>
+        <span>{{ item.title }}</span>
+      </router-link>
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
   import type { PropsType } from '../rule'
-  import MenuItem from './menuItem.vue'
   const props = defineProps<{ data: PropsType }>()
-  let mouseEvent = ref('')
-  let hide = ref(false)
-  const resMouseEvent = (judge: boolean) => {
-    if (judge === true) {
-      hide.value = true
-      mouseEvent.value = 'menuItemHover'
-    } else {
-      hide.value = false
-      mouseEvent.value = 'menuItemLeave'
-    }
-  }
 </script>
 <style scoped lang="scss">
-  span {
-    padding-left: 6px;
+  .icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
   }
-  .menuItem {
-    position: relative;
+  .nav-item {
     padding: 0 10px;
+    color: #4c4948;
+    font-weight: 700;
+    &:hover {
+      color: #49b1f5;
+      .menu {
+        display: inline-block;
+      }
+    }
+    span {
+      display: inline-block;
+      padding-left: 6px;
+    }
   }
-  .hoverColor {
-    &::after {
-      position: absolute;
-      content: '';
-      bottom: 10px;
-      left: 0;
-      width: 0%;
-      height: 4px;
-      animation: v-bind('mouseEvent') 0.2s;
-      animation-timing-function: linear;
-      animation-fill-mode: forwards;
-      background-color: #1aa5ff;
+  //
+  .menu {
+    display: none;
+    color: #4c4948;
+    position: absolute;
+    top: 60px;
+    font-size: 16px;
+    background-color: #fff;
+    border-radius: 6px;
+    box-shadow: 0 5px 20px -4px rgb(0 0 0 / 50%);
+    overflow: hidden;
+    animation: upTop 0.3s;
+    animation-fill-mode: forwards;
+
+    a {
+      display: inline-block;
+      line-height: 50px;
+      padding: 0 10px;
+      margin-left: 6px;
+      border-radius: 6px;
+      &:hover {
+        background: $--text-bg-hover;
+        color: #fff;
+      }
+      &:last-child {
+        margin-right: 10px;
+      }
+      &:first-child {
+        margin-left: 10px;
+      }
     }
   }
 </style>

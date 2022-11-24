@@ -21,11 +21,13 @@
 ------------------------------- */
 @keyframes upTop {
   0% {
-    transform: translateY(60px);
+    transform: translate(-50%, 40px);
+    // transform: translateX(-50%);
+
     opacity: 0;
   }
   100% {
-    transform: translateY(0px);
+    transform: translate(-50%, 0px);
     opacity: 1;
   }
 }
@@ -40,24 +42,6 @@
   }
   100% {
     transform: translateY(0px);
-  }
-}
-/* 头像旋转
-------------------------------- */
-@keyframes vatarRotateStart {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-@keyframes vatarRotateEnd {
-  0% {
-    transform: rotate(360deg);
-  }
-  100% {
-    transform: rotate(0deg);
   }
 }
 /* 放大

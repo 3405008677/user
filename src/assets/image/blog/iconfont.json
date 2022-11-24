@@ -6,6 +6,90 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "7865396",
+      "name": "饼干",
+      "font_class": "food-cookie",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "7865397",
+      "name": "碧根果",
+      "font_class": "food-pecan",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "7865400",
+      "name": "草莓",
+      "font_class": "food-strawberry",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "7865404",
+      "name": "面包",
+      "font_class": "food-bread",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "7865405",
+      "name": "披萨",
+      "font_class": "food-pizza",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
+      "icon_id": "7865407",
+      "name": "塔可",
+      "font_class": "food-taco",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "7865408",
+      "name": "棒冰",
+      "font_class": "food-popsicle",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "7865409",
+      "name": "蛋黄酥",
+      "font_class": "food-eggyolkcake",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "7865410",
+      "name": "寿司",
+      "font_class": "food-sushi",
+      "unicode": "e609",
+      "unicode_decimal": 58889
+    },
+    {
+      "icon_id": "7865414",
+      "name": "麻薯",
+      "font_class": "food-mochi",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
+      "icon_id": "7865439",
+      "name": "开心果",
+      "font_class": "food-pistachio",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "7947379",
+      "name": "空心问号",
+      "font_class": "kongxinwenhao",
+      "unicode": "ed19",
+      "unicode_decimal": 60697
+    },
+    {
       "icon_id": "23659051",
       "name": "公司公告",
       "font_class": "gongsigonggao",

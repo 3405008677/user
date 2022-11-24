@@ -24,6 +24,6 @@ export interface DeleteDyn {
  * 点赞/取消点赞
  */
 export interface Thumb {
-  byUserid?: number
+  byUserId?: number
   dynId: number
 }
