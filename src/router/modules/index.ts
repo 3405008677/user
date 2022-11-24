@@ -3,7 +3,7 @@ export default [
     path: '/',
     name: '/',
     redirect: '/home',
-    component: () => import("@/layouts/default/index.vue"),
+    component: () => import('@/layouts/default/index.vue'),
     children: [
       {
         path: 'home',
@@ -17,7 +17,7 @@ export default [
       },
       {
         path: 'edit',
-        name: '/edti',
+        name: '/edit',
         meta: {
           title: '富文本',
           needLogin: true,

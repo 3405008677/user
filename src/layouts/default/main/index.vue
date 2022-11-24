@@ -1,9 +1,9 @@
 <template>
-  <div id="aside-content">
+  <div id="aside-content" v-if="appStore.isCardIcon">
     <CardIcon />
     <Announcement />
   </div>
-  <div id="recent-posts">
+  <div id="recent-posts" :class="appStore.isCardIcon ? '' : 'isCardHide'">
     <PageLayout />
   </div>
 </template>
@@ -11,6 +11,7 @@
   import PageLayout from '@/layouts/page/index.vue'
   import { CardIcon } from '@/components/AsideContent'
   import { Announcement } from '@/components/AsideContent'
+  import { appStore } from '@/store'
 </script>
 <style scoped lang="scss">
   #aside-content {
@@ -22,5 +23,10 @@
   }
   #recent-posts {
     width: 75%;
+  }
+  .isCardHide {
+    width: 100% !important;
+    padding: 20px;
+    box-shadow: $--card-box-shadow;
   }
 </style>
