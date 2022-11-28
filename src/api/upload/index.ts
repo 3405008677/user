@@ -1,14 +1,28 @@
 import request from '@/utils/request'
 
 /**
- * 登录
- * @params username 用户名
- * @params password 密码
+ * 上传图片
+ * @params file 文件
  */
-const login = (data: number) => {
-  return request.post('/sys/login', data)
+const fileUpload = (data: { file: File }) => {
+  return request.post('/file/upload', data)
 }
-
+/**
+ * 删除图片
+ * @params fileName 文件名
+ */
+const fileDelete = (data: { fileName: string }) => {
+  return request.post('/file/delete', data)
+}
+/**
+ * 获取图片
+ * @params fileName 文件名
+ */
+const fileGet = (data: { fileName: string }) => {
+  return request.get('/file/get', data)
+}
 export default {
-  login,
+  fileUpload,
+  fileDelete,
+  fileGet,
 }

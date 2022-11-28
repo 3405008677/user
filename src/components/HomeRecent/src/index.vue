@@ -1,7 +1,7 @@
 <template>
   <div id="recent">
     <div class="recent-item flex">
-      <div class="recent-item-img" v-if="direction">
+      <div class="recent-item-img" v-if="direction && props.recent.coverImage">
         <el-image style="width: 100%; height: 100%" :src="props.recent.image" fit="cover" />
       </div>
       <div class="recent-item-text flex-c">
@@ -35,7 +35,7 @@
           </span>
         </div>
       </div>
-      <div class="recent-item-img" v-if="!direction">
+      <div class="recent-item-img" v-if="!direction && props.recent.coverImage">
         <el-image style="width: 100%; height: 100%" :src="props.recent.image" fit="cover" />
       </div>
     </div>
@@ -61,7 +61,7 @@
    * 则 点赞 数量增加
    */
   const isThumb = async (id: number) => {
-    await dynamic.thumb({ dynId: id, byUserId: userStore.userId })
+    await dynamic.thumb({ dynId: id, byUserId: userStore.userInfo.id })
     if (thumb.value) {
       thumb.value = !thumb.value
       props.recent.thumb_number--

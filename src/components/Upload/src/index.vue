@@ -1,5 +1,6 @@
 <template>
   <el-upload
+    :headers="headers"
     v-loading="loading"
     :action="myUrl"
     list-type="picture-card"
@@ -20,6 +21,7 @@
   import type { UploadProps, UploadFiles, UploadFile } from 'element-plus'
   import type { FileType } from '../rule'
   import { getToken } from '@/utils/auth'
+  import UploadApi from '@/api/upload'
 
   import { convertFile } from '@/utils'
   const props = defineProps<{
@@ -28,40 +30,36 @@
     // 这里是为了当我们没有点击提交时 父组件通过绑定的数组进行删除上传的文件
     value?: []
     // 这里是为了显示文件
-    fileData?: []
+    fileData?: UploadFile[] | string[]
     // 上传文件的格式
     fileType?: []
-    modelValue?: []
+    modelValue?: string[]
   }>()
   const emit = defineEmits(['update:modelValue'])
   const myUrl = ref<string>('')
-  const fileList = ref<UploadFiles>([])
-  // 当前上传的文件列表
-
-  const arrayModel = ref<[] | undefined>([])
+  const fileList = ref<UploadFile[] | string[]>([])
+  // 当前上传后的文件列表
+  const arrayModel = ref<[]>([])
   const loading = ref<boolean>(false)
+  const headers = ref({ ContentType: 'application/json;charset=UTF-8' })
   // 处理传过来的url 这里我传图片请求头要带token,如果不需要可删除
   myUrl.value = `${props.url}?token=${getToken()}`
   // 这里是为了如果传过文件 那么显示出来有文件
-  fileList.value = props.fileData as UploadFiles
-  // 删除文件是触发的钩子
-  const handleRemove = (file: FileType) => {
+  fileList.value = props.fileData!
+  // 删除文件时触发的钩子
+  const handleRemove = async (file: UploadFile) => {
     // 看当前有多少个文件
-    for (let i = 0; i < fileList.value!.length; i++) {
+    console.log(fileList)
+    for (let i = 0; i < fileList.value.length; i++) {
       // 要删除的文件 == 已经上传过的文件
-      if (file.uid == fileList.value![i]['uid']) {
+      if (file.uid == fileList.value[i].uid) {
         // 从文件列表中删除
-        fileList.value!.splice(i, 1)
+        fileList!.value.splice(i, 1)
         // 发起请求 删除文件
-        //  this.$http({
-        //    url: this.$http.adornUrl(`/sys/file/deleteRelated`),
-        //    method: "post",
-        //    params: fileName: this.arrayModel[i]
-        //  }).then(res=>{
-        //    // 更新绑定的v-model
-        //    this.arrayModel.splice(i, 1);
-        //    this.$emit("update", this.arrayModel);
-        //  });
+        await UploadApi.fileDelete({ fileName: arrayModel.value![i] })
+        // 更新绑定的v-model
+        arrayModel.value?.splice(i, 1)
+        emit('update:modelValue', arrayModel.value)
       }
     }
   }
@@ -117,17 +115,14 @@
     uploadFile: UploadFile,
     uploadFiles: UploadFiles,
   ) => {
-    console.log(response, uploadFiles)
-
-    if (response.code !== 0) return false
+    if (response.code !== 200) return false
     // 这里 arrayModel存储的是后端返回的编译后的文件名
-    arrayModel!.value!.push(response.bean as never)
+    arrayModel.value!.push(response.bean as never)
     // 上传成功则往v-model数据上添加
     emit('update:modelValue', arrayModel.value)
     // 更新一下 文件列表
     fileList.value = uploadFiles
   }
-  const fileRemove = (file: File, fileList: []) => {}
 </script>
 
 <style scoped lang="scss"></style>

@@ -9,7 +9,7 @@
       <!-- 添加封面 -->
       <div>
         <div>添加封面</div>
-        <Upload v-model="imgData" url="http://121.43.225.214:9400/sys/user/reviseHead" />
+        <Upload v-model="imgData" url="/api/file/upload" />
       </div>
       <!-- 创作声明​ -->
       <div>
@@ -64,18 +64,18 @@
   //内容
   const appendContent = ref('')
   //封面
-  const imgData = ref<[]>([])
+  const imgData = ref<string[]>()
   // 创作声明
   const creation = ref('')
   // 文章话题
   const topics = ref('')
   // 提交
-  const submit = () => {
-    console.log(appendContent.value)
-    // dynamic.append({
-    //   title: appendTitle.value,
-    //   content: appendContent.value,
-    // })
+  const submit = async () => {
+    dynamic.append({
+      title: appendTitle.value,
+      content: appendContent.value,
+      coverImage: imgData.value![0] as unknown as string,
+    })
   }
   onBeforeUnmount(() => {
     appStore.setCarIcon(true)

@@ -9,7 +9,6 @@ import { resetRouter } from '@/router/index'
 export default defineStore('user', {
   state: (): UserState => {
     return {
-      userId: 0,
       token: getToken(),
       userInfo: getUserInfo(),
       routerList: [{}],
@@ -21,9 +20,8 @@ export default defineStore('user', {
       const { username, password } = userinfo
       let { bean } = await loginApi.login({ username: username.trim(), password: password.trim() })
       this.token = bean.token
-      this.userId = bean.id
       setToken(bean.token)
-      this.getInfo()
+      this.getInfo(bean.id)
     },
     // 退出
     async logout() {
@@ -32,8 +30,8 @@ export default defineStore('user', {
       resetRouter()
     },
     // 获取用户信息
-    async getInfo() {
-      let { bean } = await userApi.getUserInfoApi({ id: this.userId })
+    async getInfo(userId: number) {
+      let { bean } = await userApi.getUserInfoApi({ id: userId })
       this.userInfo = bean
       setUserInfo(bean)
     },

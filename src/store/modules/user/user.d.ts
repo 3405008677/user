@@ -3,7 +3,6 @@ interface UserInfo {
 }
 
 export interface UserState {
-  userId: number
   token: string
   userInfo: UserInfo
   routerList: Array<UserInfo>

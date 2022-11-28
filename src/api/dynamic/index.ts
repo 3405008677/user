@@ -56,4 +56,11 @@ const trample = (data: DeleteDyn) => {
 const collect = (params: DeleteDyn) => {
   return request.get('/dynamic/collect', params)
 }
-export default { thumbDetail, queryDynList, append, deleteDyn, thumb, trample, collect }
+/**
+ * 分享
+ * @params address 分享的地址
+ */
+const share = (params: { address: string }) => {
+  return request.get('/dynamic/share', params)
+}
+export default { thumbDetail, queryDynList, append, deleteDyn, thumb, trample, collect, share }
