@@ -52,6 +52,7 @@
     console.log(fileList)
     for (let i = 0; i < fileList.value.length; i++) {
       // 要删除的文件 == 已经上传过的文件
+      // @ts-ignore
       if (file.uid == fileList.value[i].uid) {
         // 从文件列表中删除
         fileList!.value.splice(i, 1)

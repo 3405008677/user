@@ -2,10 +2,10 @@
   <div id="recent">
     <div class="recent-item flex">
       <div class="recent-item-img" v-if="direction && props.recent.coverImage">
-        <el-image style="width: 100%; height: 100%" :src="props.recent.image" fit="cover" />
+        <el-image style="width: 100%; height: 100%" :src="imgFromData" fit="cover" />
       </div>
       <div class="recent-item-text flex-c">
-        <h2 class="text-hide">
+        <h2 @click="goToArticle" class="text-hide">
           {{ props.recent.title }}
         </h2>
         <p style="padding-top: 10px">{{ props.recent.content }}</p>
@@ -35,8 +35,9 @@
           </span>
         </div>
       </div>
-      <div class="recent-item-img" v-if="!direction && props.recent.coverImage">
-        <el-image style="width: 100%; height: 100%" :src="props.recent.image" fit="cover" />
+      <div class="recent-item-img" v-if="(!direction && props.recent.coverImage) || imgFromData">
+        <el-image style="width: 100%; height: 100%" :src="imgFromData" fit="cover" />
+        <img :src="imgFromData" alt="" />
       </div>
     </div>
   </div>
@@ -44,10 +45,14 @@
 <script lang="ts" setup>
   import { Recent } from '../rule'
   import dynamic from '@/api/dynamic'
+  import upload from '@/api/upload'
   import { userStore } from '@/store'
+  import { useRouter } from 'vue-router'
+  const router = useRouter()
   const props = defineProps<{ recent: Recent; direction: number }>()
   let iconSize = 20
   let direction = computed(() => props.direction % 2)
+  let imgFromData = ref()
   let isCollect = ref('')
   // 点赞
   let thumb = ref(false)
@@ -112,6 +117,23 @@
     dynamic.collect({ dynId: id })
     isCollect.value == '' ? (isCollect.value = 'color:#056de8;') : (isCollect.value = '')
   }
+  // 获取图片
+  if (props.recent.coverImage) {
+    // console.log(upload.fileGet(data:{ fileName: props.recent.coverImage }))
+    upload.fileGet({ fileName: props.recent.coverImage }).then((res) => {
+      imgFromData.value = res.data
+      console.log(imgFromData.value)
+    })
+  }
+  // 跳转详情页面
+  const goToArticle = () => {
+    console.log(props.recent)
+    router.push({
+      name: '/article',
+      //@ts-ignore
+      params: { data: props.recent },
+    })
+  }
   onMounted(() => {
     clickThumb()
   })
@@ -138,7 +160,7 @@
       width: 65%;
       padding: 20px;
       p {
-        padding: 16px 0;
+        margin-bottom: 16px;
         display: -webkit-box;
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
@@ -180,6 +202,15 @@
           cursor: pointer;
         }
       }
+    }
+  }
+  @media screen and (max-width: 630px) {
+    .recent-item-img {
+      display: none !important;
+    }
+    .recent-item-text {
+      width: 100% !important;
+      padding: 14px !important;
     }
   }
 </style>

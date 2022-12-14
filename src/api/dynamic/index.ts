@@ -63,4 +63,21 @@ const collect = (params: DeleteDyn) => {
 const share = (params: { address: string }) => {
   return request.get('/dynamic/share', params)
 }
-export default { thumbDetail, queryDynList, append, deleteDyn, thumb, trample, collect, share }
+
+/**
+ * 查询所有动态话题
+ */
+const topic = () => {
+  return request.get('/dynamic/topic')
+}
+export default {
+  thumbDetail,
+  queryDynList,
+  append,
+  deleteDyn,
+  thumb,
+  trample,
+  collect,
+  share,
+  topic,
+}

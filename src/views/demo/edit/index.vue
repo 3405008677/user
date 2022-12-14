@@ -18,11 +18,7 @@
           <i class="iconfont icon-kongxinwenhao"></i>
         </div>
         <div>
-          <el-select v-model="creation" class="m-2" placeholder="无声明" size="large">
-            <el-option label="原创" :value="0" />
-            <el-option label="抄袭" :value="1" />
-            <el-option label="抄袭" :value="2" />
-          </el-select>
+          <el-select class="m-2" placeholder="无声明" size="large"> </el-select>
         </div>
       </div>
       <!-- 文章话题​ -->
@@ -32,10 +28,30 @@
           <i class="iconfont icon-kongxinwenhao"></i>
         </div>
         <div>
-          <el-select v-model="topics" class="m-2" placeholder="未添加" size="large">
-            <el-option label="原创" :value="0" />
-            <el-option label="抄袭" :value="1" />
-            <el-option label="抄袭" :value="2" />
+          <el-select v-model="topic" class="m-2" placeholder="未添加" size="large">
+            <el-option
+              v-for="(item, index) in topicArr"
+              :key="index"
+              :label="item"
+              :value="item"
+            ></el-option>
+          </el-select>
+        </div>
+      </div>
+      <!-- 权限 -->
+      <div>
+        <div>
+          <p>权限</p>
+          <i class="iconfont icon-kongxinwenhao"></i>
+        </div>
+        <div>
+          <el-select v-model="auth" class="m-2" placeholder="未添加" size="large">
+            <el-option
+              v-for="(item, index) in authArr"
+              :key="index"
+              :label="item"
+              :value="index"
+            ></el-option>
           </el-select>
         </div>
       </div>
@@ -68,15 +84,31 @@
   // 创作声明
   const creation = ref('')
   // 文章话题
-  const topics = ref('')
+  const topicArr = ref<string[]>()
+  // 选中的话题
+  const topic = ref<string>()
+  // 权限列表
+  const authArr = ['所有人可见', '仅粉丝可见', '指定用户可见(开发中)']
+  // 选中的权限
+  const auth = ref<number>()
+
   // 提交
   const submit = async () => {
-    dynamic.append({
-      title: appendTitle.value,
-      content: appendContent.value,
-      coverImage: imgData.value![0] as unknown as string,
-    })
+    // dynamic.append({
+    //   title: appendTitle.value,
+    //   content: appendContent.value,
+    //   coverImage: imgData.value![0] as unknown as string,
+    //   auth:auth.value
+    //   topicName:topic.value
+    // })
   }
+
+  // 获取文章话题
+  dynamic.topic().then((res) => {
+    // topics.value = Object.values(res.bean as string[])
+    topicArr.value = Array.from(res.bean)
+  })
+
   onBeforeUnmount(() => {
     appStore.setCarIcon(true)
     appStore.setIsHome(true)
@@ -108,6 +140,9 @@
         p {
           padding-right: 6px;
         }
+        // :deep('.el-select-dropdown__item') {
+        //   padding: 0 32px 0 20px;
+        // }
       }
     }
   }

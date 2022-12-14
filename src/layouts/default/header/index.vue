@@ -35,32 +35,27 @@
       title: '主页',
       icon: 'HomeFilled',
       to: '',
-      children: [
-        { title: '主页1', icon: 'HomeFilled', to: '/edit' },
-        { title: '主页2', icon: 'HomeFilled', to: 'home' },
-        { title: '主页3', icon: 'HomeFilled', to: 'home' },
-      ],
     },
     {
-      title: '主页',
+      title: '文章',
       icon: 'HomeFilled',
       to: '',
 
       children: [
-        { title: '主页1', icon: 'HomeFilled', to: 'home' },
-        { title: '主页2', icon: 'HomeFilled', to: 'home' },
-        { title: '主页3', icon: 'HomeFilled', to: 'home' },
+        { title: '找文章', icon: 'HomeFilled', to: 'home' },
+        { title: '我的文章', icon: 'HomeFilled', to: 'home' },
+        { title: '写文章', icon: 'HomeFilled', to: '/edit' },
       ],
     },
     {
-      title: '主页',
+      title: '好友',
       icon: 'HomeFilled',
       to: '',
 
       children: [
-        { title: '主页1', icon: 'HomeFilled', to: 'home' },
-        { title: '主页2', icon: 'HomeFilled', to: 'home' },
-        { title: '主页3', icon: 'HomeFilled', to: 'home' },
+        { title: '列表', icon: 'HomeFilled', to: 'home' },
+        { title: '消息', icon: 'HomeFilled', to: 'home' },
+        { title: '添加', icon: 'HomeFilled', to: 'home' },
       ],
     },
   ])
@@ -93,12 +88,14 @@
     align-content: center;
   }
   .nav {
+    min-width: 390px;
     position: fixed;
     top: 00px;
     left: 0;
     padding: 0 30px;
     line-height: 60px;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255,255,255,0.5);
+    backdrop-filter: saturate(180%) blur(20px);
     z-index: 999;
     width: 100%;
     justify-content: space-between;

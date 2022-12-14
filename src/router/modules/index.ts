@@ -25,6 +25,16 @@ export default [
         },
         component: () => import('@/views/demo/edit/index.vue'),
       },
+      {
+        path: 'article/:data',
+        name: '/article',
+        meta: {
+          title: '文章',
+          needLogin: true,
+          keepAlive: false,
+        },
+        component: () => import('@/views/demo/article/index.vue'),
+      },
     ],
   },
   {

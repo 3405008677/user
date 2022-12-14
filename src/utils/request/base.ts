@@ -3,14 +3,16 @@ import { getToken } from '../auth'
 
 const request = axios.create({
   baseURL: import.meta.env.VITE_BASE_REL,
-  timeout: 5000,
+  timeout: 50000,
   headers: {},
 })
 
 // request interceptor
 request.interceptors.request.use(
   (config: any) => {
-    // request befour judge
+    // 设置请求头
+    config!.headers['ContentType'] = `application/json;charset=UTF-8`
+    // request before judge
     const userToken: string = getToken()
     if (userToken) config!.headers['Authorization'] = `Bearer ${userToken}`
     return config

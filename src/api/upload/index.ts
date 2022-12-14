@@ -17,9 +17,10 @@ const fileDelete = (data: { fileName: string }) => {
 /**
  * 获取图片
  * @params fileName 文件名
+ * @params headers  请求头
  */
-const fileGet = (data: { fileName: string }) => {
-  return request.get('/file/get', data)
+const fileGet = (data: { fileName: string }, headers?: object) => {
+  return request.get('/file/get', data, headers)
 }
 export default {
   fileUpload,

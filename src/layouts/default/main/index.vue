@@ -15,7 +15,7 @@
 </script>
 <style scoped lang="scss">
   #aside-content {
-    position:sticky;
+    position: sticky;
     top: 100px;
     width: 25%;
     margin-right: 15px;
@@ -30,5 +30,14 @@
     width: 100% !important;
     padding: 20px;
     box-shadow: $--card-box-shadow;
+  }
+
+  @media screen and (max-width: 1000px) {
+    #aside-content {
+      display: none !important;
+    }
+    #recent-posts {
+      width: 100% !important;
+    }
   }
 </style>

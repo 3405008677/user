@@ -24,6 +24,7 @@
     color: #fff;
     div {
       margin-bottom: 10px;
+      position: relative;
     }
     &::before {
       position: absolute;
@@ -31,7 +32,7 @@
       height: 100%;
       left: 0;
       top: 0;
-      background-color: rgba(0, 0, 0, 0.5);
+      background-color: rgba(0, 0, 0, 0.4);
       content: '';
     }
     .footer-records {
