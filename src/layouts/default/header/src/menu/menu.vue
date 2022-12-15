@@ -56,23 +56,29 @@
     overflow: hidden;
     animation: upTop 0.3s;
     animation-fill-mode: forwards;
+    padding: 0 10px;
 
     a {
       display: inline-block;
       line-height: 50px;
       padding: 0 10px;
-      margin-left: 6px;
+      // margin-left: 6px;
       border-radius: 6px;
+      white-space: nowrap;
       &:hover {
         background: $--text-bg-hover;
         color: #fff;
       }
-      &:last-child {
-        margin-right: 10px;
-      }
-      &:first-child {
-        margin-left: 10px;
-      }
+    }
+  }
+
+  @media screen and (max-width: 630px) {
+    .nav-item {
+      position: relative;
+    }
+    .menu{
+      left: 50%;
+      transform: translateX(-50%);
     }
   }
 </style>

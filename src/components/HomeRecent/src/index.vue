@@ -119,11 +119,10 @@
   }
   // 获取图片
   if (props.recent.coverImage) {
-    // console.log(upload.fileGet(data:{ fileName: props.recent.coverImage }))
-    upload.fileGet({ fileName: props.recent.coverImage }).then((res) => {
-      imgFromData.value = res.data
-      console.log(imgFromData.value)
-    })
+    // upload.fileGet({ fileName: props.recent.coverImage }).then((res) => {
+    //   imgFromData.value = res.data
+    //   console.log(imgFromData.value)
+    // })
   }
   // 跳转详情页面
   const goToArticle = () => {
@@ -169,7 +168,7 @@
     }
     .item-meta {
       color: #8590a6;
-      line-height: 30px;
+      height: 35px;
       span {
         font-size: 14px;
         display: inline-flex;

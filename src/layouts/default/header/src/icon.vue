@@ -5,8 +5,15 @@
 </template>
 <script setup lang="ts">
   const goContent = () => {
-    const dom = document.querySelector(`.el-main`)
-    dom!.scrollIntoView(true)
+    const dom = document
+      .querySelector(`.el-main`)
+      ?.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' })
+    // dom!.scrollIntoView(true)
+    // window.scroll({
+    //   top: 100,
+    //   left: 0,
+    //   behavior: 'smooth',
+    // })
   }
 </script>
 <style lang="scss" scoped>
