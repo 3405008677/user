@@ -3,8 +3,11 @@
     <div v-for="(item, index) in beanArr" :key="index">
       <HomeRecent :recent="item" :direction="index" />
     </div>
-    <div class="flex-j-a loading" v-shadow="loading">
+    <div class="flex-j-a loading" v-show="loading">
       <span>努力加载中···&nbsp;&nbsp;</span><el-icon><Loading /></el-icon>
+    </div>
+    <div class="flex-j-a loading" v-show="!loading">
+      <span>已经到底了哦~&nbsp;&nbsp;</span><el-icon><Bell /></el-icon>
     </div>
   </div>
 </template>
@@ -19,17 +22,14 @@
   const getThumb = async () => {
     if (loading.value) {
       dynamic.thumbDetail({ pageNum: page.value, pageSize: limit.value }).then((res) => {
-        // beanArr.value.concat(res.bean)
-        // res.bean.forEach((item: object) => {
-        //   beanArr.value.push(item)
-        // })
         // @ts-ignore
         beanArr.value.push(...res.bean)
         // beanArr.value.concat(res.bean)
-        console.log(beanArr.value, '12')
-        if (res.bean.length) {
+        if (res.bean.length > 0) {
           page.value++
           loading.value = true
+        } else {
+          loading.value = false
         }
       })
     }
@@ -46,7 +46,6 @@
       var scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight
       // 滚动条到底部的条件
       if (scrollTop + windowHeight > scrollHeight - 160) {
-        console.log('到底了')
         getThumb()
       }
     }

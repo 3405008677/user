@@ -26,7 +26,7 @@ export default [
         component: () => import('@/views/demo/edit/index.vue'),
       },
       {
-        path: 'article/:data',
+        path: 'article/:dynId',
         name: '/article',
         meta: {
           title: '文章',

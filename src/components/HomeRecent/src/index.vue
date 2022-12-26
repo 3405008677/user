@@ -4,7 +4,7 @@
       <div class="recent-item-img" v-if="direction && props.recent.coverImage">
         <el-image style="width: 100%; height: 100%" :src="imgFromData" fit="cover" />
       </div>
-      <div class="recent-item-text flex-c">
+      <div class="recent-item-text flex-c" :style="props.recent.coverImage ? '' : 'width:100%;'">
         <h2 @click="goToArticle" class="text-hide">
           {{ props.recent.title }}
         </h2>
@@ -34,10 +34,17 @@
             <el-icon :size="iconSize"><Promotion /></el-icon>&nbsp;分享
           </span>
         </div>
+        <div class="item-meta flex-a">
+          <span style="margin: 0 10px 0 0">
+            <el-icon><Calendar /></el-icon>&nbsp;&nbsp;{{ props.recent.createTime }}
+          </span>
+          <span style="margin: 0 10px 0 0">
+            <el-icon><CollectionTag /></el-icon>&nbsp;&nbsp;{{}}
+          </span>
+        </div>
       </div>
-      <div class="recent-item-img" v-if="(!direction && props.recent.coverImage) || imgFromData">
+      <div class="recent-item-img" v-if="!direction && props.recent.coverImage">
         <el-image style="width: 100%; height: 100%" :src="imgFromData" fit="cover" />
-        <img :src="imgFromData" alt="" />
       </div>
     </div>
   </div>
@@ -119,18 +126,15 @@
   }
   // 获取图片
   if (props.recent.coverImage) {
-    // upload.fileGet({ fileName: props.recent.coverImage }).then((res) => {
-    //   imgFromData.value = res.data
-    //   console.log(imgFromData.value)
-    // })
+    upload.fileGet({ fileName: props.recent.coverImage }).then((res) => {
+      imgFromData.value = res.bean
+    })
   }
   // 跳转详情页面
   const goToArticle = () => {
-    console.log(props.recent)
     router.push({
       name: '/article',
-      //@ts-ignore
-      params: { data: props.recent },
+      params: { dynId: 123 },
     })
   }
   onMounted(() => {

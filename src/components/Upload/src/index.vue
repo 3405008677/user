@@ -4,7 +4,7 @@
     v-loading="loading"
     :action="myUrl"
     list-type="picture-card"
-    :auto-upload="true"
+    :auto-upload="autoUpload"
     :file-list="fileList"
     :before-upload="beforeUpload"
     :on-success="uploadSuccess"
@@ -27,6 +27,8 @@
   const props = defineProps<{
     // 上传文件的地址 必填
     url: string
+    // 是否自动上传文件
+    autoUpload: boolean
     // 这里是为了当我们没有点击提交时 父组件通过绑定的数组进行删除上传的文件
     value?: []
     // 这里是为了显示文件
@@ -49,18 +51,19 @@
   // 删除文件时触发的钩子
   const handleRemove = async (file: UploadFile) => {
     // 看当前有多少个文件
-    console.log(fileList)
-    for (let i = 0; i < fileList.value.length; i++) {
-      // 要删除的文件 == 已经上传过的文件
-      // @ts-ignore
-      if (file.uid == fileList.value[i].uid) {
-        // 从文件列表中删除
-        fileList!.value.splice(i, 1)
-        // 发起请求 删除文件
-        await UploadApi.fileDelete({ fileName: arrayModel.value![i] })
-        // 更新绑定的v-model
-        arrayModel.value?.splice(i, 1)
-        emit('update:modelValue', arrayModel.value)
+    if (props.autoUpload) {
+      for (let i = 0; i < fileList.value.length; i++) {
+        // 要删除的文件 == 已经上传过的文件
+        // @ts-ignore
+        if (file.uid == fileList.value[i].uid) {
+          // 从文件列表中删除
+          fileList!.value.splice(i, 1)
+          // 发起请求 删除文件
+          await UploadApi.fileDelete({ fileName: arrayModel.value![i] })
+          // 更新绑定的v-model
+          arrayModel.value?.splice(i, 1)
+          emit('update:modelValue', arrayModel.value)
+        }
       }
     }
   }
@@ -108,6 +111,7 @@
       ElMessage.error('文件大于30MB！')
       return false
     }
+    console.log('auto-file', 2)
   }
 
   // 文件上传成功的钩子
@@ -123,6 +127,7 @@
     emit('update:modelValue', arrayModel.value)
     // 更新一下 文件列表
     fileList.value = uploadFiles
+    console.log('auto-file', 1)
   }
 </script>
 

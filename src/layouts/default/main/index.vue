@@ -25,6 +25,7 @@
   }
   #recent-posts {
     width: 75%;
+    background: #fff;
   }
   .isCardHide {
     width: 100% !important;

@@ -34,7 +34,7 @@
     {
       title: '主页',
       icon: 'HomeFilled',
-      to: '',
+      to: '/home',
     },
     {
       title: '文章',

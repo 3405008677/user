@@ -9,7 +9,7 @@
       <!-- 添加封面 -->
       <div>
         <div>添加封面</div>
-        <Upload v-model="imgData" url="/api/file/upload" />
+        <Upload v-model="imgData" :autoUpload="false" url="/api/file/upload" />
       </div>
       <!-- 创作声明​ -->
       <div>
